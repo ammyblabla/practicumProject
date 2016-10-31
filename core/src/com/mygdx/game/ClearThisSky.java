@@ -14,7 +14,7 @@ public class ClearThisSky extends Game {
  
     @Override
     public void render () {
-        super.render();
+    	super.render();
     }
  
     @Override
