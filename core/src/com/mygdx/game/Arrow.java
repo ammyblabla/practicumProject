@@ -2,11 +2,11 @@ package com.mygdx.game;
 
 import com.badlogic.gdx.math.Vector2;
 
-public class Bow {
+public class Arrow {
 	
 	private Vector2 position;
 	 
-    public Bow(int x, int y) {
+    public Arrow(int x, int y) {
         position = new Vector2(x,y);
     }    
  
