@@ -43,8 +43,8 @@ public class WorldRenderer {
 		batch.begin();
 		batch.draw(BG,-230,0);
         batch.draw(bowImg, -10, -10, 0, 0, bowImg.getWidth()/2, bowImg.getHeight()/2, 1, 1, world.getRotation()-45, 1, 1, bowImg.getWidth(), bowImg.getHeight(), false, false);
+        targetRender(world.getPlane(), planeImg, 7);
         targetRender(world.getBird(), birdImg, 3);
-        targetRender(world.getPlane(), planeImg, 5);
         arrowRender(world.getArrow());
 		fontScore.draw(batch, "Score: " + world.getScore(), clearThisSky.WIDTH * 2/3, clearThisSky.HEIGHT - 60);
 		fontTime.draw(batch, "Time: " + world.getTime(), clearThisSky.WIDTH * 1/3, clearThisSky.HEIGHT - 60);
@@ -59,7 +59,6 @@ public class WorldRenderer {
 			else if(target.getX() == -1) {
 				batch.draw(img, target.getPosition().x - img.getWidth()/(2*scale), target.getPosition().y - img.getHeight()/(2*scale), img.getWidth()/scale, img.getHeight()/scale, 1, 1, img.getWidth(), img.getHeight(), false, false);
 			}
-//			batch.draw(img, target.getPosition().x, target.getPosition().y);
 		}
 	}
 	

@@ -18,8 +18,8 @@ public class Arrow {
     }    
  
     public void update() {
-    	x = (float) (10*Math.cos(Math.toRadians(rotation)));
-    	y = (float) (10*Math.sin(Math.toRadians(rotation)));
+    	x = (float) (15*Math.cos(Math.toRadians(rotation)));
+    	y = (float) (15*Math.sin(Math.toRadians(rotation)));
     	position.add(x,y);    
     }
     

@@ -9,7 +9,7 @@ public class Target {
 	private World world;
 	private Vector2 position;
 	private ClearThisSky clearThisSky;
-	Random rand;
+	private Random rand;
 	private int x;
 	private int y;
 	private int speed;
