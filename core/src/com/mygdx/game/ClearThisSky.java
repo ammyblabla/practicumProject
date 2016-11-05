@@ -5,8 +5,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class ClearThisSky extends Game {
     public SpriteBatch batch;
-    public static final int WIDTH = 1920;
-    public static final int HEIGHT = 1080;
+    public static final int WIDTH = 1366; //1920;
+    public static final int HEIGHT = 768; //1080;
  
     @Override
     public void create () {
