@@ -106,32 +106,33 @@ public class World {
 	}
 	
 	public void updateAttacked() {
-		boolean alreadyAttack = false;
-		for (int a = 0; a < arrow.size(); a++) {
-			for (int b = 0; b < bird.size(); b++) {
-				if(isAttacked(arrow.get(a), bird.get(b))) {
-					arrow.remove(a);
-					bird.remove(b);
-					increaseScore(TARGET_BIRD);
-					alreadyAttack = true;
-					break;
+		boolean active = true;
+		for (int indexArrow = 0; indexArrow < arrow.size(); indexArrow++) {
+			active = loopForUpdateAttack(bird, TARGET_BIRD, indexArrow, active);
+			active = loopForUpdateAttack(plane, TARGET_PLANE, indexArrow, active);
+		}
+	}
+	
+	private boolean loopForUpdateAttack(ArrayList<Target> target, int TARGET_SCORE, int indexArrow, boolean active) {
+		if(active) {
+			for (int indexTarget = 0; indexTarget < target.size(); indexTarget++) {
+				if(isAttacked(arrow.get(indexArrow), target.get(indexTarget))) {
+					arrow.remove(indexArrow);
+					target.remove(indexTarget);
+					score += TARGET_SCORE;
+					return false;
 				}
 			}
-			for (int p = 0; p < plane.size() & !alreadyAttack; p++) {
-				if(isAttacked(arrow.get(a), plane.get(p))) {
-					arrow.remove(a);
-					plane.remove(p);
-					increaseScore(TARGET_PLANE);
-					break;
-				}
-			}
+			return true;
+		}
+		else {
+			return false;
 		}
 	}
 	
 	public boolean isAttacked(Arrow arrow, Target target) {
-		int range = 40;
+		int range = 20;
 		if ((arrow.getPosition().x <= target.getPosition().x+range) & (arrow.getPosition().x >= target.getPosition().x-range) & (arrow.getPosition().y <= target.getPosition().y+range) & (arrow.getPosition().y >= target.getPosition().y-range)) {
-			System.out.println("Attack!");
 			return true;
 		}
 		return false;
@@ -139,10 +140,6 @@ public class World {
 	
 	public int getScore() {
 		return score;
-	}
-	
-	public void increaseScore(int TARGET) {
-		score += TARGET;
 	}
 	
 	public int getTime() {
