@@ -45,10 +45,10 @@ public class World {
 	
 	private void genTarget(int numBird, int numPlane) {
 		for (int i = 0; i < numBird; i++) {
-			bird.add(new Target());
+			bird.add(new Target(this));
 		}
 		for (int j = 0; j < numPlane; j++) {
-			plane.add(new Target());
+			plane.add(new Target(this));
 		}
 	}
 	
@@ -120,5 +120,9 @@ public class World {
 	
 	public ArrayList<Arrow> getArrow() {
 		return arrow;
+	}
+	
+	public ClearThisSky getClearThisSky() {
+		return clearThisSky;
 	}
 }

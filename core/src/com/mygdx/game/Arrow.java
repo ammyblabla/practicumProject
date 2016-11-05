@@ -15,7 +15,6 @@ public class Arrow {
     	x = (float) (160*Math.cos(Math.toRadians(rotation)));
     	y = (float) (160*Math.sin(Math.toRadians(rotation)));
         position = new Vector2(x, y);
-        System.out.println("(" + x + ", " + y + ")");
     }    
  
     public void update() {

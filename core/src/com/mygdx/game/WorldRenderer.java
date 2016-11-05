@@ -43,23 +43,28 @@ public class WorldRenderer {
 		batch.begin();
 		batch.draw(BG,-230,0);
         batch.draw(bowImg, -10, -10, 0, 0, bowImg.getWidth()/2, bowImg.getHeight()/2, 1, 1, world.getRotation()-45, 1, 1, bowImg.getWidth(), bowImg.getHeight(), false, false);
-        targetRender(world.getBird(), birdImg);
-        targetRender(world.getPlane(), planeImg);
+        targetRender(world.getBird(), birdImg, 3);
+        targetRender(world.getPlane(), planeImg, 5);
         arrowRender(world.getArrow());
 		fontScore.draw(batch, "Score: " + world.getScore(), clearThisSky.WIDTH * 2/3, clearThisSky.HEIGHT - 60);
 		fontTime.draw(batch, "Time: " + world.getTime(), clearThisSky.WIDTH * 1/3, clearThisSky.HEIGHT - 60);
 		batch.end();
 	}
 	
-	private void targetRender(ArrayList<Target> arrayOfTarget, Texture img) {
+	private void targetRender(ArrayList<Target> arrayOfTarget, Texture img, int scale) {
 		for (Target target : arrayOfTarget) {
-			batch.draw(img, target.getPosition().x, target.getPosition().y);
+			if (target.getX() == 1) {
+				batch.draw(img, target.getPosition().x - img.getWidth()/(2*scale), target.getPosition().y - img.getHeight()/(2*scale), img.getWidth()/scale, img.getHeight()/scale, 1, 1, img.getWidth(), img.getHeight(), true, false);
+			}
+			else if(target.getX() == -1) {
+				batch.draw(img, target.getPosition().x - img.getWidth()/(2*scale), target.getPosition().y - img.getHeight()/(2*scale), img.getWidth()/scale, img.getHeight()/scale, 1, 1, img.getWidth(), img.getHeight(), false, false);
+			}
+//			batch.draw(img, target.getPosition().x, target.getPosition().y);
 		}
 	}
 	
 	private void arrowRender(ArrayList<Arrow> arrayOfArrow) {
 		for (Arrow arrow : arrayOfArrow) {
-//			batch.draw(arrowImg, arrow.getPosition().x, arrow.getPosition().y, arrowImg.getWidth()/20, arrowImg.getHeight()/20, arrowImg.getWidth()/10, arrowImg.getHeight()/10, 1, 1, arrow.getRotation(), 1, 1, arrowImg.getWidth(), arrowImg.getHeight(), false, false);
 			batch.draw(arrowImg, arrow.getPosition().x, arrow.getPosition().y, 0, 0, arrowImg.getWidth()/10, arrowImg.getHeight()/10, 1, 1, arrow.getRotation(), 1, 1, arrowImg.getWidth(), arrowImg.getHeight(), false, false);
 		}
 	}
