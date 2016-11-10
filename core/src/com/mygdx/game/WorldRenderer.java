@@ -21,9 +21,6 @@ public class WorldRenderer {
 	private BitmapFont fontScore;
 	private BitmapFont fontTime;
 	
-	private int x;
-	private int y;
-	
 	public WorldRenderer(ClearThisSky clearThisSky, World world) {
 		this.clearThisSky = clearThisSky;
 		this.world = world;

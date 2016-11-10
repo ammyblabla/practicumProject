@@ -4,7 +4,6 @@ import com.badlogic.gdx.math.Vector2;
 
 public class Arrow {
 	
-	private World world;
 	private Vector2 position;
 	private int rotation;
 	private float x;

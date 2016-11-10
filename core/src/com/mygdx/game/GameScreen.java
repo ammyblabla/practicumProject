@@ -30,5 +30,15 @@ public class GameScreen extends ScreenAdapter {
         worldRenderer.render(delta);
     }
     
+    public boolean gameEnd() {
+    	if(world.getTime() == 0 | world.clearAllTargets()) {
+    		return true;
+    	}
+    	return false;
+    }
+    
+    public World getWorld() {
+    	return world;
+    }
 
 }

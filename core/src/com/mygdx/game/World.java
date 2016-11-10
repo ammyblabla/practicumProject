@@ -18,26 +18,25 @@ public class World {
 	private ArrayList<Arrow> arrow;
 	private ArrayList<Target> bird;
 	private ArrayList<Target> plane;
+	
 	private Timer mainTimer;
 	private TimerTask mainTask;
 	private TimerTask arrowTask;
+	
 	private int score;
 	private int time;
 	private int irotation = 1;
     private int rotation = 0;
     private int arrowTime;
     private int arrowRelease;
-    private int x;
-    private int y; //x=rcos0 y=rsin0 tan0=y/x r^2 = x^2+y^2 Math.cos(Math.toRadians(354))
 	
 	World(ClearThisSky clearThisSky) {
 		arrow = new ArrayList<Arrow>();
 		bird = new ArrayList<Target>();
 		plane = new ArrayList<Target>();
 		makeTimer();
-		
 		score = 0;
-		time = 0;
+		time = 10;
 		mainTimer.scheduleAtFixedRate(mainTask, 1000, 1000);
 		mainTimer.scheduleAtFixedRate(arrowTask, 0, 350);
 		genTarget(5, 3);
@@ -57,7 +56,7 @@ public class World {
 		mainTask = new TimerTask() {
 			@Override
 			public void run() {
-				time++;
+				time--;
 			}
 		};
 		arrowTask = new TimerTask() {
@@ -78,12 +77,11 @@ public class World {
     	rotation += (irotation*2);
 	}
 	
-	public void update(float delta) { //<-----------------------------------------update----------------------------------------
+	public void update(float delta) { 
 		setRotation();
 		updateArrow();
 		updateTarget();
 		updateAttacked();
-    	
 		if(Gdx.input.isKeyPressed(Keys.SPACE) & arrowRelease != arrowTime) {
 			arrowRelease = arrowTime;
     		arrow.add(new Arrow(rotation));
@@ -125,13 +123,11 @@ public class World {
 			}
 			return true;
 		}
-		else {
-			return false;
-		}
+		return false;
 	}
 	
 	public boolean isAttacked(Arrow arrow, Target target) {
-		int range = 20;
+		int range = 40;
 		if ((arrow.getPosition().x <= target.getPosition().x+range) & (arrow.getPosition().x >= target.getPosition().x-range) & (arrow.getPosition().y <= target.getPosition().y+range) & (arrow.getPosition().y >= target.getPosition().y-range)) {
 			return true;
 		}
@@ -148,6 +144,13 @@ public class World {
 	
 	public int getRotation() {
 		return rotation;
+	}
+	
+	public boolean clearAllTargets() {
+		if(bird.isEmpty() & plane.isEmpty()) {
+			return true;
+		}
+		return false;
 	}
 	
 	public ArrayList<Target> getBird() {
