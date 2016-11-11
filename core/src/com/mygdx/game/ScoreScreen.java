@@ -6,6 +6,7 @@ import java.awt.Graphics;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
@@ -17,25 +18,20 @@ public class ScoreScreen extends ScreenAdapter {
 	private SpriteBatch batch;
 	private ClearThisSky clearThisSky;
 	private BitmapFont scoreText;
-	private Graphics g1;
+//	private Graphics g1;
 	private int score;
 	private Texture BG;
+	private boolean restart;
 	
 	public ScoreScreen(ClearThisSky clearThisSky, World world) {
 		this.clearThisSky = clearThisSky;
 		this.batch = clearThisSky.batch;
+		restart = false;
 		BG = new Texture("BG.jpg");
 		
-//		anim1 a=new anim1();
-//	    Graphics g1 = anim1.getGraphics();
-		
-		scoreText = new BitmapFont();
+		scoreText = new BitmapFont(Gdx.files.internal("EndingFont.fnt"));
 		score = world.getScore();
 		scoreText.setColor(128, 128, 128, (float) 0.87);
-		scoreText.getRegion().getTexture().setFilter(TextureFilter.Linear, TextureFilter.Linear);
-		scoreText.getData().setScale(12);
-//		scoreText.setFont(new Font("gnyrwn971.ttff", 1, 25));
-//		scoreText.setColor(new Color(128, 0, 0));
 	}
 	
 	@Override
@@ -46,8 +42,19 @@ public class ScoreScreen extends ScreenAdapter {
 		batch.begin();
 		batch.draw(BG,-230,0);
 		scoreText.draw(batch, "Your score: " + score, clearThisSky.WIDTH/2, clearThisSky.HEIGHT/2, 1, 1, false);
-//		scoreText.draw
 		batch.end();
+		
+		checkSpace();
+	}
+	
+	public void checkSpace() {
+		if(Gdx.input.isKeyPressed(Keys.SPACE)) {
+			restart = true;
+		}
+	}
+	
+	public boolean isRestart() {
+		return restart;
 	}
 
 }

@@ -31,7 +31,7 @@ public class GameScreen extends ScreenAdapter {
     }
     
     public boolean gameEnd() {
-    	if(world.getTime() == 0 | world.clearAllTargets()) {
+    	if(world.getTime() <= 0 | world.clearAllTargets()) {
     		return true;
     	}
     	return false;
