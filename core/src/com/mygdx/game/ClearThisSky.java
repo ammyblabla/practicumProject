@@ -10,20 +10,23 @@ public class ClearThisSky extends Game {
     
     private GameScreen gameScreen;
     private ScoreScreen scoreScreen;
+    private boolean neverEndBefore;
  
     @Override
     public void create () {
     	batch = new SpriteBatch();
     	gameScreen = new GameScreen(this);
+    	neverEndBefore = true;
         setScreen(gameScreen);
     }
  
     @Override
     public void render () {
     	super.render();
-    	if(gameScreen.gameEnd()) {
+    	if(gameScreen.gameEnd() & neverEndBefore) {
     		scoreScreen = new ScoreScreen(this, gameScreen.getWorld());
     		setScreen(scoreScreen);
+    		neverEndBefore = false;
     	}
     	restart();
     }
@@ -40,6 +43,7 @@ public class ClearThisSky extends Game {
     			gameScreen = new GameScreen(this);
     			setScreen(gameScreen);
     			scoreScreen.dispose();
+    			neverEndBefore = true;
     		}
     	}
     }

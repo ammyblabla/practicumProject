@@ -1,15 +1,10 @@
 package com.mygdx.game;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Graphics;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
@@ -18,7 +13,6 @@ public class ScoreScreen extends ScreenAdapter {
 	private SpriteBatch batch;
 	private ClearThisSky clearThisSky;
 	private BitmapFont scoreText;
-//	private Graphics g1;
 	private int score;
 	private Texture BG;
 	private boolean restart;
@@ -48,7 +42,7 @@ public class ScoreScreen extends ScreenAdapter {
 	}
 	
 	public void checkSpace() {
-		if(Gdx.input.isKeyPressed(Keys.SPACE)) {
+		if(Gdx.input.isKeyPressed(Keys.ENTER)) {
 			restart = true;
 		}
 	}

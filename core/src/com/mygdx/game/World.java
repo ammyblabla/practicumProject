@@ -82,7 +82,7 @@ public class World {
 		updateArrow();
 		updateTarget();
 		updateAttacked();
-		if(Gdx.input.isKeyPressed(Keys.SPACE) & arrowRelease != arrowTime) {
+		if(Gdx.input.isKeyPressed(Keys.SPACE) & arrowRelease < arrowTime) {
 			arrowRelease = arrowTime;
     		arrow.add(new Arrow(rotation));
         }
