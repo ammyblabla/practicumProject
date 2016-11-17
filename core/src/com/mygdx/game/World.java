@@ -38,7 +38,7 @@ public class World {
 		score = 0;
 		time = 10;
 		mainTimer.scheduleAtFixedRate(mainTask, 1000, 1000);
-		mainTimer.scheduleAtFixedRate(arrowTask, 0, 350);
+		mainTimer.scheduleAtFixedRate(arrowTask, 0, 250);
 		genTarget(5, 3);
 	}
 	
@@ -82,7 +82,7 @@ public class World {
 		updateArrow();
 		updateTarget();
 		updateAttacked();
-		if(Gdx.input.isKeyPressed(Keys.SPACE) & arrowRelease < arrowTime) {
+		if(Gdx.input.isKeyPressed(Keys.SPACE) & arrowRelease < arrowTime-1) {
 			arrowRelease = arrowTime;
     		arrow.add(new Arrow(rotation));
         }
