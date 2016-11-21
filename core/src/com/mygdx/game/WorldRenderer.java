@@ -60,7 +60,7 @@ public class WorldRenderer {
 	
 	private void arrowRender(ArrayList<Arrow> arrayOfArrow) {
 		for (Arrow arrow : arrayOfArrow) {
-			batch.draw(arrowImg, arrow.getPosition().x, arrow.getPosition().y, 0, 0, arrowImg.getWidth()/10, arrowImg.getHeight()/10, 1, 1, arrow.getRotation(), 1, 1, arrowImg.getWidth(), arrowImg.getHeight(), false, false);
+			batch.draw(arrowImg, arrow.getPosition().x, arrow.getPosition().y, arrowImg.getWidth()/20, arrowImg.getHeight()/20, arrowImg.getWidth()/10, arrowImg.getHeight()/10, 1, 1, arrow.getCurrentRotation(), 1, 1, arrowImg.getWidth(), arrowImg.getHeight(), false, false);
 		}
 	}
 }

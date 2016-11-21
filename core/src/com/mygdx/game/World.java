@@ -26,6 +26,7 @@ public class World {
 	private TimerTask mainTask;
 	private TimerTask arrowTask;
 	
+	private int velocity; //for vibration sensor
 	private int score;
 	private int time;
     private int arrowTime;
@@ -34,6 +35,7 @@ public class World {
     private int Delay = 2;
 	
 	World(ClearThisSky clearThisSky) {
+		velocity = 125; //change for vibration sensor
 		arrow = new ArrayList<Arrow>();
 		bird = new ArrayList<Target>();
 		plane = new ArrayList<Target>();
@@ -79,7 +81,7 @@ public class World {
 		addTarget(delta);
 		if(Gdx.input.isKeyPressed(Keys.SPACE) & arrowRelease < arrowTime-1) {
 			arrowRelease = arrowTime;
-    		arrow.add(new Arrow(bows.getRotation()));
+    		arrow.add(new Arrow(bows.getRotation(), velocity));
         }
 	}
 	
