@@ -28,11 +28,10 @@ public class World {
 	
 	private int score;
 	private int time;
-    private int rotation = 0;
     private int arrowTime;
     private int arrowRelease;
     private float LastTarget;
-    private int Delay = 1;
+    private int Delay = 2;
 	
 	World(ClearThisSky clearThisSky) {
 		arrow = new ArrayList<Arrow>();
@@ -72,24 +71,15 @@ public class World {
 		};
 	}
 	
-	private void setRotation() {
-		if(Gdx.input.isKeyJustPressed(Input.Keys.RIGHT)  && rotation>0){
-    		rotation -= 10;
-    	}
-		else if(Gdx.input.isKeyJustPressed(Input.Keys.LEFT) && rotation<90){
-    		rotation += 10;
-    	}
-	}
-	
 	public void update(float delta) { 
-		setRotation();
+		bows.setRotation();
 		updateArrow();
 		updateTarget();
 		updateAttacked();
 		addTarget(delta);
 		if(Gdx.input.isKeyPressed(Keys.SPACE) & arrowRelease < arrowTime-1) {
 			arrowRelease = arrowTime;
-    		arrow.add(new Arrow(rotation));
+    		arrow.add(new Arrow(bows.getRotation()));
         }
 	}
 	
@@ -162,10 +152,6 @@ public class World {
 	
 	public int getTime() {
 		return time;
-	}
-	
-	public int getRotation() {
-		return rotation;
 	}
 	
 	public boolean clearAllTargets() {
