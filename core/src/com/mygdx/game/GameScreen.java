@@ -42,13 +42,5 @@ public class GameScreen extends ScreenAdapter {
     public World getWorld() {
     	return world;
     }
-    
-    private void bowsControler() {
-    	if(Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-    		world.increaseRotation();
-    	} else if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-    		world.decreaseRotation();
-    	}
-    }
 
 }

@@ -7,6 +7,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Input.Keys;
 
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Timer;
 
 public class World {
@@ -27,10 +28,11 @@ public class World {
 	
 	private int score;
 	private int time;
-	private int irotation = 1;
     private int rotation = 0;
     private int arrowTime;
     private int arrowRelease;
+    private float LastTarget;
+    private int Delay = 1;
 	
 	World(ClearThisSky clearThisSky) {
 		arrow = new ArrayList<Arrow>();
@@ -71,23 +73,12 @@ public class World {
 	}
 	
 	private void setRotation() {
-//		if(rotation >= 90) 
 		if(Gdx.input.isKeyJustPressed(Input.Keys.RIGHT)  && rotation>0){
     		rotation -= 10;
     	}
-//    	else if(rotation <= 0) {
 		else if(Gdx.input.isKeyJustPressed(Input.Keys.LEFT) && rotation<90){
     		rotation += 10;
     	}
-//    	rotation += (irotation*2);
-	}
-	
-	public void increaseRotation() {
-		irotation++;
-	}
-	
-	public void decreaseRotation() {
-		irotation--;
 	}
 	
 	public void update(float delta) { 
@@ -95,10 +86,28 @@ public class World {
 		updateArrow();
 		updateTarget();
 		updateAttacked();
+		addTarget(delta);
 		if(Gdx.input.isKeyPressed(Keys.SPACE) & arrowRelease < arrowTime-1) {
 			arrowRelease = arrowTime;
     		arrow.add(new Arrow(rotation));
         }
+	}
+	
+	public void addTarget(float delta) {
+		LastTarget = LastTarget + delta;
+		if(LastTarget >= Delay) {
+//			System.out.println("eiei");
+			Random rand = new Random();
+			int item = rand.nextInt(2);
+			if(item == 0) {
+				plane.add(new Target(this));
+			} else {
+				bird.add(new Target(this));
+			}
+			LastTarget = 0;
+		}
+		System.out.println(LastTarget);
+		System.out.println(delta);
 	}
 	
 	public void updateArrow() {
