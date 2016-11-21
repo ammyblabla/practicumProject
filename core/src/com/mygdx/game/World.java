@@ -3,6 +3,7 @@ package com.mygdx.game;
 import java.util.TimerTask;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Input.Keys;
 
 import java.util.ArrayList;
@@ -15,6 +16,7 @@ public class World {
 	public static final int TARGET_PLANE = 2;
 	
 	private ClearThisSky clearThisSky;
+	private Bows bows;
 	private ArrayList<Arrow> arrow;
 	private ArrayList<Target> bird;
 	private ArrayList<Target> plane;
@@ -34,9 +36,10 @@ public class World {
 		arrow = new ArrayList<Arrow>();
 		bird = new ArrayList<Target>();
 		plane = new ArrayList<Target>();
+		bows = new Bows(this);
 		makeTimer();
 		score = 0;
-		time = 10;
+		time = 30;
 		mainTimer.scheduleAtFixedRate(mainTask, 1000, 1000);
 		mainTimer.scheduleAtFixedRate(arrowTask, 0, 250);
 		genTarget(5, 3);
@@ -68,13 +71,23 @@ public class World {
 	}
 	
 	private void setRotation() {
-		if(rotation >= 90) {
-    		irotation = -1;
+//		if(rotation >= 90) 
+		if(Gdx.input.isKeyJustPressed(Input.Keys.RIGHT)){
+    		rotation -= 10;
     	}
-    	else if(rotation <= 0) {
-    		irotation = 1;
+//    	else if(rotation <= 0) {
+		else if(Gdx.input.isKeyJustPressed(Input.Keys.LEFT)){
+    		rotation += 10;
     	}
-    	rotation += (irotation*2);
+//    	rotation += (irotation*2);
+	}
+	
+	public void increaseRotation() {
+		irotation++;
+	}
+	
+	public void decreaseRotation() {
+		irotation--;
 	}
 	
 	public void update(float delta) { 
@@ -167,5 +180,9 @@ public class World {
 	
 	public ClearThisSky getClearThisSky() {
 		return clearThisSky;
+	}
+	
+	public Bows getBows() {
+		return bows;
 	}
 }

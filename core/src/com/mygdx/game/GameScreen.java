@@ -1,11 +1,13 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g3d.particles.ParticleShader.Inputs;
 
 public class GameScreen extends ScreenAdapter {
 
@@ -39,6 +41,14 @@ public class GameScreen extends ScreenAdapter {
     
     public World getWorld() {
     	return world;
+    }
+    
+    private void bowsControler() {
+    	if(Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+    		world.increaseRotation();
+    	} else if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+    		world.decreaseRotation();
+    	}
     }
 
 }

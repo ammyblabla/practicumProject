@@ -29,7 +29,7 @@ public class WorldRenderer {
 		birdImg = new Texture("Bird.png");
 		planeImg = new Texture("Plane.png");
 		arrowImg = new Texture("Arrow_cut.png");
-        bowImg = new Texture("Bow.png");
+//        bowImg = new Texture("Bow.png");
         BG = new Texture("BG.jpg");
         
 		fontScore = new BitmapFont();
@@ -39,8 +39,9 @@ public class WorldRenderer {
 	public void render(float delta) {
 		batch.begin();
 		batch.draw(BG,-230,0);
-        batch.draw(bowImg, -10, -10, 0, 0, bowImg.getWidth()/2, bowImg.getHeight()/2, 1, 1, world.getRotation()-45, 1, 1, bowImg.getWidth(), bowImg.getHeight(), false, false);
-        targetRender(world.getPlane(), planeImg, 7);
+//        batch.draw(bowImg, -10, -10, 0, 0, bowImg.getWidth()/2, bowImg.getHeight()/2, 1, 1, world.getRotation()-45, 1, 1, bowImg.getWidth(), bowImg.getHeight(), false, false);
+		world.getBows().bowsRenderer(batch);
+		targetRender(world.getPlane(), planeImg, 7);
         targetRender(world.getBird(), birdImg, 3);
         arrowRender(world.getArrow());
 		fontScore.draw(batch, "Score: " + world.getScore(), clearThisSky.WIDTH * 2/3, clearThisSky.HEIGHT - 60);
