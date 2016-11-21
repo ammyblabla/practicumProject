@@ -72,11 +72,11 @@ public class World {
 	
 	private void setRotation() {
 //		if(rotation >= 90) 
-		if(Gdx.input.isKeyJustPressed(Input.Keys.RIGHT)){
+		if(Gdx.input.isKeyJustPressed(Input.Keys.RIGHT)  && rotation>0){
     		rotation -= 10;
     	}
 //    	else if(rotation <= 0) {
-		else if(Gdx.input.isKeyJustPressed(Input.Keys.LEFT)){
+		else if(Gdx.input.isKeyJustPressed(Input.Keys.LEFT) && rotation<90){
     		rotation += 10;
     	}
 //    	rotation += (irotation*2);
